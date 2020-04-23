@@ -39,9 +39,9 @@ def insert_row(row_number, df, row_value):
    
 
 df = pd.read_csv(all_files[0], index_col=None, header=1)
-df.dropna(axis = 0, how='all', inplace = True)
+df.dropna(axis=0, how='all', inplace=True)
 df = df.reset_index()
-rec = pd.isnull(df).any(1)
+rec = df[df.iloc[:,2:].isnull().all(axis=1)]
 rec = rec[rec==True]
 rowAdj = rec.index.to_list()
 
